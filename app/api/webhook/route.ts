@@ -1,7 +1,7 @@
 // app/api/webhook/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
-const VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN as string;
+const VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN as string || "default-token";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
