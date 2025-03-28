@@ -1,0 +1,13 @@
+{
+  "name": "michaelai-01",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "api/webhook.js",
+  "scripts": {},
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7"
+  }
+}
+
