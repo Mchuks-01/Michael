@@ -11,14 +11,11 @@ module.exports = async (req, res) => {
 
     if (mode && token === VERIFY_TOKEN) {
       console.log('✅ Webhook verified!');
-      res.statusCode = 200;
-      res.end(challenge);
+      return res.status(200).send(challenge);
     } else {
       console.warn('❌ Verification failed!');
-      res.statusCode = 403;
-      res.end('Forbidden');
+      return res.status(403).send('Forbidden');
     }
-    return;
   }
 
   if (req.method === 'POST') {
@@ -43,26 +40,23 @@ module.exports = async (req, res) => {
               handleMessage(senderPsid, webhookEvent.message);
             }
           });
-          res.statusCode = 200;
-          res.end('EVENT_RECEIVED');
+          return res.status(200).send('EVENT_RECEIVED');
         } else {
           console.warn('❗ Invalid webhook event received');
-          res.statusCode = 404;
-          res.end('Invalid Webhook Event');
+          return res.status(404).send('Invalid Webhook Event');
         }
       } catch (err) {
         console.error('❌ Failed to parse POST body', err);
-        res.statusCode = 400;
-        res.end('Bad Request');
+        return res.status(400).send('Bad Request');
       }
     });
 
     return;
   }
 
-  res.statusCode = 405;
-  res.end('Method Not Allowed');
+  return res.status(405).send('Method Not Allowed');
 };
+
 
 
   
